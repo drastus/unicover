@@ -19,12 +19,15 @@ import fontconfig as fc
 import freetype as ft
 import unicodedata as ud
 
-from blocks import blocks as all_blocks
-from ranges import Ranges
+from .blocks import blocks as all_blocks
+from .ranges import Ranges
 
 
 class UniCover:
-	description = 'Displays info about characters supported by fonts.'
+	"""
+	UniCover 0.1 beta.
+	Displays info about characters supported by fonts.
+	"""
 
 	def __init__(self):
 		self._display = {}
@@ -38,7 +41,7 @@ class UniCover:
 
 	def parse_args(self):
 		ap = argparse.ArgumentParser(
-			description=self.description
+			description=self.__doc__
 		)
 		ap.add_argument('-f', '--font', help='specify font (file path or font family name)')
 		group = ap.add_mutually_exclusive_group()
@@ -46,7 +49,6 @@ class UniCover:
 		group.add_argument('-b', '--block', help='specify Unicode block (name or hex Unicode number of start code point)')
 		ap.add_argument('-l', '--list', action='store_true', help='show list of characters or font files')
 		ap.add_argument('-g', '--group', action='store_true', help='show groups of characters or fonts')
-#		ap.add_argument('-s', '--summary', action='store_true', help='show short summary')
 		ap.add_argument('-o', '--omit-summary', action='store_true', help='omit summary')
 		return ap.parse_args()
 
@@ -73,10 +75,9 @@ class UniCover:
 
 	def info(self):
 		"""
-		Displays basic info on UniCover
+		Displays basic info on UniCover.
 		"""
-		print('UniCover 0.1 beta')
-		print(self.description)
+		print(self.__doc__)
 		print('Type unicover -h for help.')
 
 	def chars(self, font, block):
@@ -118,7 +119,7 @@ class UniCover:
 
 	def char(self, char):
 		"""
-		Shows all system fonts that contain given character
+		Shows all system fonts that contain given character.
 		"""
 		font_files = fc.query()
 		if self._display['group']:
@@ -228,5 +229,9 @@ class UniCover:
 		return font_families
 
 
-if __name__=='__main__':
+def main():
 	UniCover().start()
+
+
+if __name__=='__main__':
+	main()
