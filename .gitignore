@@ -4,3 +4,4 @@ __pycache__/
 build/
 dist/
 install.log
+readme.html
