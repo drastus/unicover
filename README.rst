@@ -1,6 +1,15 @@
 **UniCover** is a simple command-line tool displaying information about Unicode coverage of system fonts. It should work on systems that utilize Fontconfig (Linux and other Unix-like).
 
-Dependencies: python-fontconfig, freetype-py.
+Dependencies: Python-fontconfig, freetype-py.
+
+Installation
+============
+
+In most cases issuing the following command (as root user) will be sufficient:
+
+.. code-block:: bash
+
+	pip3 install --pre UniCover
 
 Basic usage
 ===========
