@@ -170,7 +170,7 @@ class UniCover:
 				))
 
 	def _getChar(self, char_spec):
-		if all(c in string.hexdigits for c in char_spec):
+		if len(char_spec) >= 4 and all(c in string.hexdigits for c in char_spec):
 			char_number = int(char_spec, 16)
 			if char_number not in range(0x110000):
 				raise ValueError('No such character')
@@ -198,7 +198,6 @@ class UniCover:
 			font_files = [font]
 		else:
 			font_files = fc.query(family=font)
-			print(font_files)
 			if not font_files:
 				raise ValueError('No such font')
 		return font_files
