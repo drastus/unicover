@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import re
-import sys
 
 from unicover.ranges import Ranges
 
