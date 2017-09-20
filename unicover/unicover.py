@@ -40,7 +40,8 @@ class UniCover:
 
     def parse_args(self):
         ap = argparse.ArgumentParser(
-            description=self.__doc__
+            description=self.__doc__,
+            epilog='For examples, see https://github.com/drastus/unicover.'
         )
         ap.add_argument('-f', '--font', help='specify font (file path or font family name)')
         group = ap.add_mutually_exclusive_group()
