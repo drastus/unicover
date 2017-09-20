@@ -109,11 +109,11 @@ class UniCover:
                     print("{0:>6}  {1:47} {2:>4.0%} ({3}/{4})".format(block[0], block[2], percent, o_count, total))
                     if self._display['list']:
                         for point in overlapped[i]:
-                            print('{0:0>4X} '.format(point).rjust(9), ud.name(chr(point), '<code point {0:0>4X}>'.format(point)))
+                            self._charInfo(point, padding=9)
             self._charSummary(char_count, block_count)
         else:
             for point in code_points:
-                print('{0:0>4X} '.format(point).rjust(7), ud.name(chr(point), '<code point {0:0>4X}>'.format(point)))
+                self._charInfo(point, padding=7)
             self._charSummary(len(code_points))
 
     def char(self, char):
@@ -142,6 +142,12 @@ class UniCover:
         """
         font_files = self._getCharFont(self._getFont(font), char)
         print('The character is {0}present in this font.'.format('' if font_files else 'not '))
+
+    def _charInfo(self, point, padding):
+        """
+        Displays character info.
+        """
+        print('{0:0>4X} '.format(point).rjust(padding), ud.name(chr(point), '<code point {0:0>4X}>'.format(point)))
 
     def _charSummary(self, char_count, block_count=None):
         """
