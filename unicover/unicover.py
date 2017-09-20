@@ -2,7 +2,7 @@
 #
 # UniCover 0.1 β
 #
-# © 2014 Michał Górny
+# © 2014-2017 Michał Górny
 # Distributed under the terms of the GNU General Public License v3.
 # See http://www.gnu.org/licenses/gpl.txt for the full license text.
 #
@@ -122,7 +122,7 @@ class UniCover:
         """
         font_files = fc.query()
         if self._display['group']:
-            font_files = self._getFontChar(font_files, char)
+            font_files = self._getCharFont(font_files, char)
             font_families = self._groupFontByFamily(font_files)
             for font_family in sorted(font_families):
                 print(font_family)
@@ -131,7 +131,7 @@ class UniCover:
                         print('  '+font_file)
             self._fontSummary(len(font_files), len(font_families))
         else:
-            font_files = self._getFontChar(font_files, char)
+            font_files = self._getCharFont(font_files, char)
             for font_file in sorted(font_files):
                 print(font_file)
             self._fontSummary(len(font_files))
@@ -140,10 +140,13 @@ class UniCover:
         """
         Checks if characters occurs in the given font.
         """
-        font_files = self._getFontChar(self._getFont(font), char)
+        font_files = self._getCharFont(self._getFont(font), char)
         print('The character is {0}present in this font.'.format('' if font_files else 'not '))
 
     def _charSummary(self, char_count, block_count=None):
+        """
+        Displays characters summary.
+        """
         if not self._display['omit_summary']:
             if block_count is None:
                 print('Total code points:', char_count)
@@ -156,6 +159,9 @@ class UniCover:
                 ))
 
     def _fontSummary(self, font_file_count, font_family_count=None):
+        """
+        Displays fonts summary.
+        """
         if not self._display['omit_summary']:
             if font_family_count is None:
                 print('Total font files:', font_file_count)
@@ -168,6 +174,9 @@ class UniCover:
                 ))
 
     def _getChar(self, char_spec):
+        """
+        Returns character from given code point or character.
+        """
         if len(char_spec) >= 4 and all(c in string.hexdigits for c in char_spec):
             char_number = int(char_spec, 16)
             if char_number not in range(0x110000):
@@ -179,6 +188,9 @@ class UniCover:
             raise ValueError('No such character')
 
     def _getBlock(self, block_spec):
+        """
+        Returns block info from given block start code point or block name.
+        """
         if block_spec is None:
             return
         if all(c in string.hexdigits for c in block_spec):
@@ -192,6 +204,9 @@ class UniCover:
         raise ValueError('No such block')
 
     def _getFont(self, font):
+        """
+        Returns font paths from font name or path
+        """
         if os.path.isfile(font):
             font_files = [font]
         else:
@@ -201,6 +216,9 @@ class UniCover:
         return font_files
 
     def _getFontChars(self, font_files):
+        """
+        Returns code points of characters included in given font files.
+        """
         code_points = set()
         for font_file in font_files:
             face = ft.Face(font_file)
@@ -210,7 +228,10 @@ class UniCover:
                 charcode, agindex = face.get_next_char(charcode, agindex)
         return sorted(code_points)
 
-    def _getFontChar(self, font_files, code_point):
+    def _getCharFont(self, font_files, code_point):
+        """
+        Returns font files containing given code point.
+        """
         return_font_files = []
         for font_file in font_files:
             face = ft.Face(font_file)
@@ -219,6 +240,9 @@ class UniCover:
         return return_font_files
 
     def _groupFontByFamily(self, font_files):
+        """
+        Returns font files grouped in dict by font family.
+        """
         font_families = defaultdict(list)
         for font_file in font_files:
             font = fc.FcFont(font_file)
