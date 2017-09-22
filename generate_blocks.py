@@ -53,7 +53,7 @@ def write_blocks(blocks):
     with open(OUT, 'w') as out:
         out.write('blocks = [\n')
         for block in blocks:
-            out.write("\t['{0}', '{1}', '{2}', {3}],\n".format(*block))
+            out.write("    ['{0}', '{1}', '{2}', {3}],\n".format(*block))
         out.write(']\n')
 
 
