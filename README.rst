@@ -5,54 +5,67 @@ Dependencies: Python-fontconfig, freetype-py.
 Installation
 ============
 
-In most cases issuing the following command (as root user) will be sufficient:
+In most cases issuing the following command will be sufficient:
 
 .. code-block:: bash
 
-	pip3 install --pre UniCover
+    pip3 install --user --pre UniCover
+
+If you get an error from Python Fontconfig library, try installing it system-wide first, eg. for Debian or Ubuntu:
+
+.. code-block:: bash
+
+    sudo apt install python3-fontconfig
+
+Usage
+=====
 
 Basic usage
-===========
+-----------
 
-To display character coverage of given font file or font family, type:
+**Display all characters contained given font family or font file**
 
-.. code-block:: bash
-
-	unicover -f font_file
-
-or
+Returns list of characters grouped by Unicode blocks.
 
 .. code-block:: bash
 
-	unicover -f font_family
+    unicover -f 'Liberation Sans'
+    unicover -f /usr/share/fonts/TTF/LiberationSans-Bold.ttf
 
-To list all system fonts that contain the specified character, type:
+    unicover -f 'Liberation Sans' -g    # lists only Unicode blocks
+    unicover -f 'Liberation Sans' -o    # omits summary line (total number of characters)
 
-.. code-block:: bash
-
-	unicover -c character
-
-or
+You can discover what fonts are installed in your system using Fontconfig:
 
 .. code-block:: bash
 
-	unicover -c character_hex_code
+    fc-list : family        # lists font families
+    fc-list : file family   # lists font files with families they belong to
 
-To display all Unicode blocks supported by system fonts, type:
-
-.. code-block:: bash
-
-	unicover -g
-
-To list all characters supported by system fonts (output will be very long), type:
+**List all system fonts that contain the specified character**
 
 .. code-block:: bash
 
-	unicover -l
+    unicover -c ₹
+    unicover -c 54f6
 
-It is also possible to combine these two options:
+    unicover -f ₹ -g        # lists only font families
+    unicover -f ₹ -o        # omits summary line (total number of fonts)
+
+System fonts summaries
+----------------------
+
+**Display all Unicode blocks supported by the system fonts**
 
 .. code-block:: bash
 
-	unicover -gl
+    unicover -g
 
+**List all characters supported by the system fonts**
+
+.. code-block:: bash
+
+    unicover -l
+    unicover -gl            # group characters by Unicode block
+
+Note: output will be very long.

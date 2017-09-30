@@ -43,7 +43,7 @@ class UniCover:
             description=self.__doc__,
             epilog='For examples, see https://github.com/drastus/unicover.'
         )
-        ap.add_argument('-f', '--font', help='specify font (file path or font family name)')
+        ap.add_argument('-f', '--font', help='specify font (font family name or file path)')
         group = ap.add_mutually_exclusive_group()
         group.add_argument('-c', '--char', help='specify character (literal or hex Unicode number)')
         group.add_argument('-b', '--block', help='specify Unicode block (name or hex Unicode number of start code point)')
