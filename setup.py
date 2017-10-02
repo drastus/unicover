@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name = 'UniCover',
-    version = '0.1b2',
+    version = '0.1b3',
     author = 'Michał Górny',
     author_email = 'zrchos@gmail.com',
     description = ('Displays Unicode chars coverage of system fonts'),
