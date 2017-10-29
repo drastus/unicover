@@ -9,13 +9,13 @@ In most cases issuing the following command will be sufficient:
 
 .. code-block:: bash
 
-    pip3 install --user --pre UniCover
+    pip3 install --user UniCover
 
-If you get an error from Python Fontconfig library, try installing it system-wide first, eg. for Debian or Ubuntu:
+If you get an error from Python Fontconfig library, try installing its header files first, eg. for Debian or Ubuntu:
 
 .. code-block:: bash
 
-    sudo apt install python3-fontconfig
+    sudo apt install libfontconfig1-dev
 
 Usage
 =====

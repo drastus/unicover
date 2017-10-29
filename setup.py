@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name = 'UniCover',
-    version = '0.1b3',
+    version = '0.1',
     author = 'Michał Górny',
     author_email = 'zrchos@gmail.com',
     description = ('Displays Unicode chars coverage of system fonts'),
@@ -17,7 +17,7 @@ setup(
     packages = ['unicover'],
     long_description = read('README.rst'),
     classifiers = [
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',

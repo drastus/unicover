@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 #
-# UniCover 0.1 β
-#
-# © 2014-2017 Michał Górny
-# Distributed under the terms of the GNU General Public License v3.
-# See http://www.gnu.org/licenses/gpl.txt for the full license text.
+# UniCover 0.1
 #
 # Displays info about characters supported by fonts.
 
@@ -24,7 +20,7 @@ from .ranges import Ranges
 
 class UniCover:
     """
-    UniCover 0.1 beta.
+    UniCover 0.1.
     Displays info about characters supported by fonts.
     """
 
