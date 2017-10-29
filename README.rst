@@ -49,8 +49,8 @@ You can discover what fonts are installed in your system using Fontconfig:
     unicover -c ₹
     unicover -c 54f6
 
-    unicover -f ₹ -g        # lists only font families
-    unicover -f ₹ -o        # omits summary line (total number of fonts)
+    unicover -c ₹ -g        # lists only font families
+    unicover -c ₹ -o        # omits summary line (total number of fonts)
 
 System fonts summaries
 ----------------------
