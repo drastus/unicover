@@ -42,7 +42,11 @@ class UniCover:
         ap.add_argument('-f', '--font', help='specify font (font family name or file path)')
         group = ap.add_mutually_exclusive_group()
         group.add_argument('-c', '--char', help='specify character (literal or hex Unicode number)')
-        group.add_argument('-b', '--block', help='specify Unicode block (name or hex Unicode number of start code point)')
+        group.add_argument(
+            '-b',
+            '--block',
+            help='specify Unicode block (name or hex Unicode number of start code point)'
+        )
         ap.add_argument('-l', '--list', action='store_true', help='show list of characters or font files')
         ap.add_argument('-g', '--group', action='store_true', help='show groups of characters or fonts')
         ap.add_argument('-o', '--omit-summary', action='store_true', help='omit summary')
