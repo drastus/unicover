@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 
 import re
+import urllib.request
 
 from unicover.ranges import Ranges
 
 INB = 'Blocks.txt'
 INU = 'UnicodeData.txt'
 OUT = 'unicover/blocks.py'
+
+
+def download_unicode_files():
+    urllib.request.urlretrieve('ftp://www.unicode.org/Public/UNIDATA/Blocks.txt', 'Blocks.txt')
+    urllib.request.urlretrieve('ftp://www.unicode.org/Public/UNIDATA/UnicodeData.txt', 'UnicodeData.txt')
 
 
 def parse_blocks_file():
@@ -58,6 +64,7 @@ def write_blocks(blocks):
 
 
 def main():
+    download_unicode_files()
     blocks = parse_blocks_file()
     blocks = build_blocks(blocks)
     write_blocks(blocks)
